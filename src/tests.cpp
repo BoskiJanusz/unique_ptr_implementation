@@ -1,9 +1,20 @@
 #include <gtest/gtest.h>
+#include "my_unique_ptr.hpp"
 
-// Demonstrate some basic assertions.
-TEST(DeletedCopyConstructorTest, CopyNotAllowed) {
-  // Expect two strings not to be equal.
-  EXPECT_STRNE("hello", "world");
-  // Expect equality.
-  EXPECT_EQ(7 * 6, 42);
+struct TestObject
+{
+  int value_;
+  TestObject(int value) : value_(value){}
+  int multiplyValueByTwo()
+  {
+    return value_ *= 2;
+  }
+};
+
+TEST(MyUniqueOtrTest, ArrowOperatorTest)
+{
+  MyUniquePtr<TestObject> myUniquePtr(new TestObject{20});
+  auto expected = 40;
+
+  EXPECT_EQ(expected, myUniquePtr->multiplyValueByTwo());
 }
