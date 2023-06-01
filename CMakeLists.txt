@@ -3,10 +3,6 @@ project(my_unique_ptr VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(SRC
-    src/my_unique_ptr.cpp
-)
-
 set(FLAGS -Wall -Wextra -Wpedantic -std=c++2a)
 
 include(FetchContent)
@@ -20,12 +16,12 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 # Now simply link against gtest or gtest_main as needed. Eg
-add_executable(${PROJECT_NAME} ${SRC} src/main.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp)
 target_compile_options(${PROJECT_NAME} PRIVATE ${FLAGS})
 
 enable_testing()
 
-add_executable(${PROJECT_NAME}-ut ${SRC} src/tests.cpp )
+add_executable(${PROJECT_NAME}-ut src/tests.cpp )
 target_compile_options(${PROJECT_NAME}-ut PRIVATE ${FLAGS})
 
 target_link_libraries(${PROJECT_NAME}-ut gtest_main)
