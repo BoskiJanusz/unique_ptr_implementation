@@ -6,7 +6,7 @@ class MyUniquePtr
 private:
     T * ptr_ = nullptr;
 public:
-    MyUniquePtr(); // todo default ctor
+    MyUniquePtr() : ptr_(nullptr){}
     MyUniquePtr(T * ptr) : ptr_(ptr){}
     MyUniquePtr(const MyUniquePtr & ) = delete; // deleted copy ctor
     MyUniquePtr(MyUniquePtr &&); // todo move ctor

@@ -5,6 +5,7 @@ struct TestObject
 {
   int value_;
   TestObject(int value) : value_(value){}
+  TestObject(){};
   int multiplyValueByTwo()
   {
     return value_ *= 2;
@@ -45,4 +46,11 @@ TEST(MyUniquePtrTest, FunctionGetExpectedValueTest)
   auto expected = 40;
   auto result = rawPtr->multiplyValueByTwo();
   EXPECT_EQ(expected, result);
+}
+
+TEST(MyUniquePtrTest, DefaultConstructorTest)
+{
+  MyUniquePtr<TestObject> myUniquePtr;
+  auto value = myUniquePtr.get();
+  EXPECT_EQ(nullptr, value);
 }
