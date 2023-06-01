@@ -24,9 +24,9 @@ TEST(MyUniquePtrTest, DereferenceOperatorTest)
 {
   MyUniquePtr<TestObject> myUniquePtr(new TestObject(20));
   TestObject& dereferencedObj = *myUniquePtr;
-
   auto result = dereferencedObj.multiplyValueByTwo();
   auto expected = 40;
+
   EXPECT_EQ(expected, result);
 }
 
@@ -86,4 +86,23 @@ TEST(MyUniquePtrTest, FunctionResetNullEqualsNull)
   auto expected = nullptr;
 
   EXPECT_EQ(expected, nullValue);
+}
+
+TEST(MyUniquePtrTest, MoveConstructorOriginalEqualsNullTest) 
+{
+  MyUniquePtr<TestObject> originalPtr(new TestObject(20));
+  MyUniquePtr<TestObject> movedPtr(std::move(originalPtr));
+  auto nullValue = originalPtr.get();
+  auto expected = nullptr;
+
+  EXPECT_EQ(expected, nullValue);
+}
+TEST(MyUniquePtrTest, MoveConstructorMovedNotEqualsNullTest) 
+{
+  MyUniquePtr<TestObject> originalPtr(new TestObject(20));
+  MyUniquePtr<TestObject> movedPtr(std::move(originalPtr));
+  auto nullValue = movedPtr.get();
+  auto notExpected = nullptr;
+
+  EXPECT_NE(notExpected, nullValue);
 }

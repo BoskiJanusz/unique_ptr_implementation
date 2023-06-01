@@ -9,7 +9,11 @@ public:
     MyUniquePtr() : ptr_(nullptr){}
     MyUniquePtr(T * ptr) : ptr_(ptr){}
     MyUniquePtr(const MyUniquePtr & ) = delete; // deleted copy ctor
-    MyUniquePtr(MyUniquePtr &&); // todo move ctor
+    MyUniquePtr(MyUniquePtr && obj)
+    {
+        ptr_ = obj.ptr_;
+        obj.ptr_ = nullptr;
+    }
     MyUniquePtr& operator=(const MyUniquePtr &) = delete; // deleted copy assignment 
     MyUniquePtr& operator=(MyUniquePtr &&); // todo Move assignment operator
     T* operator->()
