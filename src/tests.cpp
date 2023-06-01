@@ -28,3 +28,21 @@ TEST(MyUniquePtrTest, DereferenceOperatorTest)
   auto expected = 40;
   EXPECT_EQ(expected, result);
 }
+
+TEST(MyUniquePtrTest, FunctionGetExpectedNotNullTest)
+{
+  MyUniquePtr<TestObject> myUniquePtr(new TestObject(20));
+  TestObject* rawPtr = myUniquePtr.get();
+
+  EXPECT_NE(nullptr, rawPtr);
+}
+
+TEST(MyUniquePtrTest, FunctionGetExpectedValueTest)
+{
+  MyUniquePtr<TestObject> myUniquePtr(new TestObject(20));
+  TestObject* rawPtr = myUniquePtr.get();
+
+  auto expected = 40;
+  auto result = rawPtr->multiplyValueByTwo();
+  EXPECT_EQ(expected, result);
+}

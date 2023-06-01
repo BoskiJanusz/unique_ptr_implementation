@@ -20,7 +20,10 @@ public:
     {
         return *(ptr_);
     }
-    T* get(); // todo return pointer to managed object method
+    T* get() const
+    {
+        return ptr_;
+    }
     T* release(); // todo return pointer to release object method
     void reset(); // todo reset pointer method
     ~MyUniquePtr()
