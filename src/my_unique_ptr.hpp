@@ -15,7 +15,16 @@ public:
         obj.ptr_ = nullptr;
     }
     MyUniquePtr& operator=(const MyUniquePtr &) = delete; // deleted copy assignment 
-    MyUniquePtr& operator=(MyUniquePtr &&); // todo Move assignment operator
+    MyUniquePtr& operator=(MyUniquePtr&& other)
+    {
+        if(other.ptr_ != nullptr)
+        {
+            delete ptr_;
+            ptr_ = other.ptr_;
+            other.ptr_ = nullptr;
+        }
+        return *this;
+    }
     T* operator->()
     {
         return ptr_;
