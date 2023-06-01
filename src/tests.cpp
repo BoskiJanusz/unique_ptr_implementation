@@ -18,3 +18,13 @@ TEST(MyUniqueOtrTest, ArrowOperatorTest)
 
   EXPECT_EQ(expected, myUniquePtr->multiplyValueByTwo());
 }
+
+TEST(MyUniqueOtrTest, DereferenceOperatorTest)
+{
+  MyUniquePtr<TestObject> myUniquePtr(new TestObject(20));
+  TestObject& dereferencedObj = *myUniquePtr;
+
+  auto result = dereferencedObj.multiplyValueByTwo();
+  auto expected = 40;
+  EXPECT_EQ(expected, result);
+}

@@ -16,9 +16,18 @@ public:
     {
         return ptr_;
     }
-    T& operator*(); // todo dereference operator
+    T& operator*()
+    {
+        return *(ptr_);
+    }
     T* get(); // todo return pointer to managed object method
     T* release(); // todo return pointer to release object method
     void reset(); // todo reset pointer method
-    ~MyUniquePtr(); // destructor
+    ~MyUniquePtr()
+    {
+        if(ptr_ != nullptr)
+        {
+            delete ptr_;
+        }
+    }
 };
