@@ -127,3 +127,23 @@ TEST(MyUniquePtrTest, MoveOperatorMoveNewPtrNotEqualsNullTest)
 
   EXPECT_NE(notExpected, notNullValue);
 }
+
+TEST(MyUniquePtrTest, FunctionReleaseOriginalPtrEqualsNullTest) 
+{
+  MyUniquePtr<TestObject> originalPtr(new TestObject(20));
+  originalPtr.release();
+  auto expected = nullptr;
+  auto nullValue = originalPtr.get();
+
+  EXPECT_EQ(expected, nullValue);
+}
+
+TEST(MyUniquePtrTest, FunctionReleaseNewPtrNotEqualsNullTest) 
+{
+  MyUniquePtr<TestObject> originalPtr(new TestObject(20));
+  auto newPtr = originalPtr.release();
+  auto notExpected = nullptr;
+
+  EXPECT_NE(notExpected, newPtr);
+  delete newPtr; //has to be deleted
+}

@@ -37,7 +37,12 @@ public:
     {
         return ptr_;
     }
-    T* release(); // todo return pointer to release object method
+    T* release()
+    {
+        auto newPtr = ptr_;
+        ptr_ = nullptr;
+        return newPtr;
+    }
     void reset()
     {
         if(ptr_ != nullptr)
