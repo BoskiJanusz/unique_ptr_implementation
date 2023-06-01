@@ -11,7 +11,7 @@ struct TestObject
   }
 };
 
-TEST(MyUniqueOtrTest, ArrowOperatorTest)
+TEST(MyUniquePtrTest, ArrowOperatorTest)
 {
   MyUniquePtr<TestObject> myUniquePtr(new TestObject{20});
   auto expected = 40;
@@ -19,7 +19,7 @@ TEST(MyUniqueOtrTest, ArrowOperatorTest)
   EXPECT_EQ(expected, myUniquePtr->multiplyValueByTwo());
 }
 
-TEST(MyUniqueOtrTest, DereferenceOperatorTest)
+TEST(MyUniquePtrTest, DereferenceOperatorTest)
 {
   MyUniquePtr<TestObject> myUniquePtr(new TestObject(20));
   TestObject& dereferencedObj = *myUniquePtr;
