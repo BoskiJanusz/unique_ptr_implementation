@@ -54,3 +54,33 @@ TEST(MyUniquePtrTest, DefaultConstructorTest)
   auto value = myUniquePtr.get();
   EXPECT_EQ(nullptr, value);
 }
+
+TEST(MyUniquePtrTest, FunctionResetNotNullNotEqualsNull)
+{
+  MyUniquePtr<TestObject> myUniquePtr(new TestObject(20));
+  auto notNullValue = myUniquePtr.get();
+  myUniquePtr.reset();
+  auto nullValue = myUniquePtr.get();
+
+  EXPECT_NE(notNullValue, nullValue);
+}
+
+TEST(MyUniquePtrTest, FunctionResetNotNullEqualsNull)
+{
+  MyUniquePtr<TestObject> myUniquePtr(new TestObject(20));
+  myUniquePtr.reset();
+  auto nullValue = myUniquePtr.get();
+  auto expected = nullptr;
+
+  EXPECT_EQ(expected, nullValue);
+}
+
+TEST(MyUniquePtrTest, FunctionResetNullEqualsNull)
+{
+  MyUniquePtr<TestObject> myUniquePtr;
+  myUniquePtr.reset();
+  auto nullValue = myUniquePtr.get();
+  auto expected = nullptr;
+
+  EXPECT_EQ(expected, nullValue);
+}

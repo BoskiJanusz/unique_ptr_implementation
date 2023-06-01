@@ -25,7 +25,14 @@ public:
         return ptr_;
     }
     T* release(); // todo return pointer to release object method
-    void reset(); // todo reset pointer method
+    void reset()
+    {
+        if(ptr_ != nullptr)
+        {
+            delete ptr_;
+            ptr_ = nullptr;
+        }
+    }
     ~MyUniquePtr()
     {
         if(ptr_ != nullptr)
