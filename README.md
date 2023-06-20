@@ -20,6 +20,6 @@ The unique_ptr class, defined in the my namespace, is a smart pointer implementa
 ### Releasing Ownership:
 - T* release(): Releases ownership of the underlying object and returns the raw pointer.
 ### Resetting the unique_ptr:
-- void reset(): Deletes the currently owned object and sets the unique_ptr to a null state.
+- void reset(): replaces the indicated object
 ### Destruction:
 - ~unique_ptr(): Destructs the unique_ptr and releases the owned object.
