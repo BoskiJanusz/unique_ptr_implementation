@@ -79,22 +79,24 @@ TEST(unique_ptrTest, MoveConstructorMovedNotEqualsNullTest) {
     EXPECT_NE(notExpected, nullValue);
 }
 
-TEST(unique_ptrTest, MoveOperatorMoveOriginalPtrEqualsNullTest) {
+TEST(unique_ptrTest, MoveOperatorMovenewPtrNotEqualsNullTest) {
     my::unique_ptr<TestObject> originalPtr(new TestObject(20));
-    auto newPtr = std::move(originalPtr);
-    auto nullValue = originalPtr.get();
-    auto expected = nullptr;
+    my::unique_ptr<TestObject> newPtr;
+    newPtr = std::move(originalPtr);
+    auto value = newPtr.get();
+    auto notexpected = nullptr;
 
-    EXPECT_EQ(expected, nullValue);
+    EXPECT_NE(notexpected, value);
 }
 
-TEST(unique_ptrTest, MoveOperatorMoveNewPtrNotEqualsNullTest) {
+TEST(unique_ptrTest, MoveOperatorMoveoriginalPtrEqualsNullTest) {
     my::unique_ptr<TestObject> originalPtr(new TestObject(20));
-    auto newPtr = std::move(originalPtr);
-    auto notNullValue = newPtr.get();
-    auto notExpected = nullptr;
+    my::unique_ptr<TestObject> newPtr;
+    newPtr = std::move(originalPtr);
+    auto value = originalPtr.get();
+    auto expected = nullptr;
 
-    EXPECT_NE(notExpected, notNullValue);
+    EXPECT_EQ(expected, value);
 }
 
 TEST(unique_ptrTest, FunctionReleaseOriginalPtrEqualsNullTest) {
